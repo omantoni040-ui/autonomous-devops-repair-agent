@@ -65,27 +65,45 @@ export TELEGRAM_CHAT_ID="REDACTED"
 python3 vps_doctor.py notify-telegram
 ```
 
-## Submission Pitch
+## What this repo is useful for
 
-**Project title:** Autonomous DevOps Repair Agent for Production Servers
+This repository is a practical starter kit for building a safe, agent-assisted DevOps monitoring and incident-response workflow on a Linux VPS.
 
-**Short description:**
+Use it when you want to:
+
+- quickly check whether a server is healthy or needs attention
+- detect common VPS problems such as closed ports, high disk usage, memory pressure, failed systemd services, Docker issues, or DNS failures
+- generate clean Markdown and JSON incident reports without manually collecting every metric
+- prepare a safe recovery checklist before making risky production changes
+- create proof artifacts for demos, grant submissions, hackathons, internal tools, or portfolio projects
+- send optional Telegram alerts when a scan reports warning or critical findings
+
+## How it works
 
 ```text
-I built an autonomous DevOps repair agent for production Linux servers. The agent monitors server health, Docker containers, systemd services, disk pressure, memory, CPU load, critical ports, domains, and application logs. When something breaks, it collects evidence, diagnoses likely root causes, writes a safe fix plan, and generates an incident report for operator approval.
+Scan server → classify risk → collect evidence → write report → suggest safe next steps → notify operator
 ```
 
-**Long form answer:**
+The agent does not blindly modify production. It focuses on diagnosis, reporting, and operator-approved recovery. This makes it useful for solo builders, small teams, VPS operators, and anyone managing multiple services without a dedicated SRE.
+
+## Example output
+
+After running a scan, the tool prints a compact health summary and can save full artifacts:
 
 ```text
-I built an autonomous DevOps repair agent for production Linux servers. The project solves a common operational problem: small teams and solo builders often run multiple VPS services but do not have a full-time SRE to monitor, diagnose, and repair incidents.
+Status: critical | Risk: 55/100
+- disk: healthy — Root disk usage is 31.24%
+- memory: healthy — Memory usage is 4.67%
+- ports: critical — Ports closed: 80, 443
+- docker: warning — Docker command failed or permission denied
 
-The agent monitors Docker containers, systemd services, disk usage, memory, CPU load, critical ports, domain health, and server state. When something breaks, it collects evidence from the machine, classifies findings as healthy/warning/critical, identifies likely root causes, proposes a safe recovery plan, and generates Markdown/JSON incident reports. It can also send Telegram alerts for high-risk incidents.
-
-The workflow is agent-driven: Hermes Agent is used as the coding and operations operator. It inspects the system, writes and modifies the diagnostic code, runs terminal verification, reviews outputs, creates incident artifacts, and prepares handoff notes. For production use, the agent separates diagnosis, risk analysis, fix planning, human approval, verification, and post-incident reporting.
-
-The impact is practical: it reduces downtime, speeds up debugging, creates consistent incident reports, and lets one operator manage multiple production services without manually checking every log, service, and server metric by hand.
+Saved JSON: reports/scan-YYYYMMDD-HHMMSS.json
+Saved Markdown: reports/incident-YYYYMMDD-HHMMSS.md
 ```
+
+## Why this matters
+
+Small production servers often fail in simple but costly ways: a port is closed, disk fills up, Docker is unhealthy, a domain stops resolving, or a service silently dies. This repo turns those checks into a repeatable workflow that produces evidence, risk scoring, and clear next steps instead of scattered manual debugging.
 
 ## Proof to upload
 
