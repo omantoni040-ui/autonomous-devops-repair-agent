@@ -126,6 +126,10 @@ You can demonstrate the project with a simple local or VPS run:
    python3 vps_doctor.py notify-telegram --dry-run
    ```
 
+## More project ideas
+
+I keep a longer roadmap in [IDEAS.md](IDEAS.md). It includes dashboard, scheduled checks, config file support, safe fix preview mode, multi-server monitoring, GitHub Actions demo, and plugin-style checks.
+
 ## Safety model
 
 This project is designed to be safe by default. It diagnoses, reports, and recommends next steps, but avoids risky production actions unless an operator approves them.
