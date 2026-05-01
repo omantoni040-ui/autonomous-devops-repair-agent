@@ -1,0 +1,6 @@
+$ python3 vps_doctor.py notify-telegram --dry-run
+Autonomous VPS Doctor scan
+Host: Jerr-studio
+Status: critical
+Risk: 55/100
+Generated: 2026-05-01T01:01:15+00:00

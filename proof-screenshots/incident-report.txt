@@ -1,0 +1,91 @@
+$ sed -n "1,90p" reports/incident-20260501-010115.md
+# Autonomous VPS Doctor Incident Report
+
+- Generated: `2026-05-01T01:01:15+00:00`
+- Host: `Jerr-studio`
+- Platform: `Linux 6.17.0-1011-azure`
+- Overall status: **CRITICAL**
+- Risk score: **55/100**
+
+## Executive Summary
+
+Critical findings: 1. Immediate operator review recommended.
+Warnings: 1. Monitor and schedule cleanup/follow-up.
+
+## Findings
+
+### disk — HEALTHY
+
+Root disk usage is 31.24%
+
+**Evidence:**
+```json
+{
+  "free_gb": 41.9,
+  "total_gb": 60.95,
+  "used_gb": 19.04,
+  "used_percent": 31.24
+}
+```
+
+### memory — HEALTHY
+
+Memory usage is 4.67%
+
+**Evidence:**
+```json
+{
+  "available_mb": 53611.84,
+  "total_mb": 56237.68,
+  "used_percent": 4.67
+}
+```
+
+### load — HEALTHY
+
+5-minute load is 0.14 across 4 CPU(s)
+
+**Evidence:**
+```json
+{
+  "cpu_count": 4,
+  "load1": 0.1201171875,
+  "load15": 0.09716796875,
+  "load5": 0.1416015625
+}
+```
+
+### ports — CRITICAL
+
+Ports closed: 80, 443
+
+**Evidence:**
+```json
+{
+  "443": "closed",
+  "80": "closed"
+}
+```
+
+**Recommended next actions:**
+- Check listening services: ss -ltnp | grep -E ':(80|443)'
+- Check reverse proxy and app service status.
+
+### systemd — HEALTHY
+
+No systemd services configured
+
+**Evidence:**
+```json
+{}
+```
+
+### docker — WARNING
+
+Docker command failed or permission denied
+
+**Evidence:**
+```json
+{
+  "output": "permission denied while trying to connect to the docker API at unix:///var/run/docker.sock"
+}

@@ -1,0 +1,12 @@
+$ cd /home/jerr/autonomous-devops-repair-agent
+$ python3 vps_doctor.py report
+Status: critical | Risk: 55/100
+- disk: healthy — Root disk usage is 31.24%
+- memory: healthy — Memory usage is 4.67%
+- load: healthy — 5-minute load is 0.14 across 4 CPU(s)
+- ports: critical — Ports closed: 80, 443
+- systemd: healthy — No systemd services configured
+- docker: warning — Docker command failed or permission denied
+- domains: healthy — No domains configured
+Saved JSON: /home/jerr/autonomous-devops-repair-agent/reports/scan-20260501-010115.json
+Saved Markdown: /home/jerr/autonomous-devops-repair-agent/reports/incident-20260501-010115.md
