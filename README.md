@@ -105,32 +105,38 @@ Saved Markdown: reports/incident-YYYYMMDD-HHMMSS.md
 
 Small production servers often fail in simple but costly ways: a port is closed, disk fills up, Docker is unhealthy, a domain stops resolving, or a service silently dies. This repo turns those checks into a repeatable workflow that produces evidence, risk scoring, and clear next steps instead of scattered manual debugging.
 
-## Proof to upload
+## Demo checklist
 
-Recommended proof artifacts:
+You can demonstrate the project with a simple local or VPS run:
 
-1. Terminal screenshot running:
+1. Run a health scan:
    ```bash
    python3 vps_doctor.py scan
+   ```
+2. Generate a full incident report:
+   ```bash
    python3 vps_doctor.py report
    ```
-2. Screenshot of `reports/incident-*.md`.
-3. Screenshot of `reports/scan-*.json`.
-4. Screenshot of `incidents/demo-disk-pressure.md`.
-5. Optional Telegram dry-run alert screenshot:
+3. Review the generated artifacts:
+   - `reports/scan-*.json` for structured machine-readable findings
+   - `reports/incident-*.md` for a human-readable incident summary
+   - `incidents/demo-disk-pressure.md` for an example recovery scenario
+4. Optional: test Telegram alert formatting without sending a real incident:
    ```bash
    python3 vps_doctor.py notify-telegram --dry-run
    ```
-6. GitHub repo or live demo URL.
 
-## Safe Recovery Policy
+## Safety model
 
-The agent is intentionally conservative:
+This project is designed to be safe by default. It diagnoses, reports, and recommends next steps, but avoids risky production actions unless an operator approves them.
+
+Built-in safety rules:
 
 - no destructive cleanup without approval
-- no secret printing
+- no secrets printed in reports
 - no automatic production restarts
-- no database deletion
-- no hardcoded credentials
+- no database deletion actions
+- no hardcoded credentials required
+- no silent fixes without an audit trail
 
-It recommends commands and requires a human/operator to approve risky changes.
+The goal is to help operators move faster during incidents while still keeping human approval in the loop for changes that can affect production.
