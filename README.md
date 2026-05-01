@@ -22,7 +22,8 @@ It is **safe by default**: it does not delete files, restart production services
 ## Quick Start
 
 ```bash
-cd /home/jerr/autonomous-devops-repair-agent
+git clone https://github.com/omantoni040-ui/autonomous-devops-repair-agent.git
+cd autonomous-devops-repair-agent
 python3 vps_doctor.py --help
 python3 vps_doctor.py scan
 python3 vps_doctor.py report

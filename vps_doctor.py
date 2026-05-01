@@ -448,6 +448,17 @@ def save_report(report: ScanReport, output_dir: Path) -> tuple[Path, Path]:
     return json_path, md_path
 
 
+def display_path(path: Path) -> str:
+    """Return public-friendly paths instead of machine-specific absolute paths."""
+    try:
+        return str(path.resolve().relative_to(Path.cwd().resolve()))
+    except ValueError:
+        try:
+            return str(path.resolve().relative_to(PROJECT_ROOT))
+        except ValueError:
+            return str(path)
+
+
 def print_summary(report: ScanReport) -> None:
     print(f"Status: {report.overall_status()} | Risk: {report.risk_score()}/100")
     for check in report.checks:
@@ -543,13 +554,13 @@ def main() -> int:
         report = run_scan(args.config)
         json_path, md_path = save_report(report, args.output_dir)
         print_summary(report)
-        print(f"Saved JSON: {json_path}")
-        print(f"Saved Markdown: {md_path}")
+        print(f"Saved JSON: {display_path(json_path)}")
+        print(f"Saved Markdown: {display_path(md_path)}")
         return 0 if report.overall_status() != "critical" else 1
 
     if args.command == "demo-incident":
         path = build_demo_incident(DEFAULT_INCIDENT_DIR)
-        print(f"Created demo incident: {path}")
+        print(f"Created demo incident: {display_path(path)}")
         return 0
 
     if args.command == "notify-telegram":

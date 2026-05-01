@@ -3,7 +3,8 @@
 Use this sequence to create screenshots for the Max Monthly Plan submission.
 
 ```bash
-cd /home/jerr/autonomous-devops-repair-agent
+git clone https://github.com/omantoni040-ui/autonomous-devops-repair-agent.git
+cd autonomous-devops-repair-agent
 python3 vps_doctor.py --help
 python3 vps_doctor.py scan
 python3 vps_doctor.py report

@@ -1,4 +1,5 @@
-$ cd /home/jerr/autonomous-devops-repair-agent
+$ git clone https://github.com/omantoni040-ui/autonomous-devops-repair-agent.git
+$ cd autonomous-devops-repair-agent
 $ python3 vps_doctor.py report
 Status: critical | Risk: 55/100
 - disk: healthy — Root disk usage is 31.24%
@@ -8,5 +9,5 @@ Status: critical | Risk: 55/100
 - systemd: healthy — No systemd services configured
 - docker: warning — Docker command failed or permission denied
 - domains: healthy — No domains configured
-Saved JSON: /home/jerr/autonomous-devops-repair-agent/reports/scan-20260501-010115.json
-Saved Markdown: /home/jerr/autonomous-devops-repair-agent/reports/incident-20260501-010115.md
+Saved JSON: reports/scan-20260501-010115.json
+Saved Markdown: reports/incident-20260501-010115.md
